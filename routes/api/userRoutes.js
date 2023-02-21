@@ -1,8 +1,14 @@
 const router = require("express").Router();
+const {
+  getUsers,
+  createUser,
+  deleteUser,
+  updateUser,
+} = require("../../controller/userController");
+const { User, Thought } = require("../../models");
 
-// const { <controller functions >} = require('controller');
+router.route("/").get(getUsers); // /api/thoughts/
 
-// router
-//     .route('/')
-//         .get(<controller function>)
-//         .post(<controller funciton>)
+router.route("/create").get(getUsers).post(createUser); // /api/thoughts/create
+
+module.exports = router;
