@@ -7,8 +7,7 @@ const {
 } = require("../../controller/thoughtController");
 const { User, Thought } = require("../../models");
 
-router.route("/").get(getThoughts); // /api/thoughts/
-
-router.route("/create").get(getThoughts).post(createThought); // /api/thoughts/create
+router.route("/").get(getThoughts).post(createThought); // /api/thoughts/
+router.route("")
 
 module.exports = router;
