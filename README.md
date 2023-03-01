@@ -6,8 +6,8 @@
 
 This is an API for a social network web application where users can share their thoughts, react to friends' thoughts, and create a friend list. It uses `Express.js` for routing, a `MongoDB` database, the `Mongoose` ODM, and `Moment.js` to format timestamps. The seed data is created using `Insomnia`.
 
-To see how the API works using Insomnia, see the **walk-through demonstration videos** here:
-[www.google.com](www.google.com)
+To see how the API works using Insomnia, see the **walk-through demonstration video** here:
+[Social Network API Walkthrough Video](https://app.castify.com/view/7de963b5-8f07-4ffd-a3ee-dbfa1fa74cd4)
 
 ## Table of Contents 📖
 
@@ -43,7 +43,7 @@ All GET POST PUT DELETE route for Users, Thoughts, Friends, Reactions:
     - PUT Update a Thought
     - DEL Remove a Thought
 - Reactions: 
-    - PUT Create a Reaction
+    - POST Create a Reaction
     - DEL Delete a Reaction
 
 See functionalities in Features section.
@@ -116,8 +116,8 @@ See functionalities in Features section.
 
 ## Usage 💡
 
-For more information - Please visit the following videos on how the application works.
-[www.google.com](www.google.com)
+For more information - Please visit the following video on how the application works.
+[Social Network API Walkthrough Video](https://app.castify.com/view/7de963b5-8f07-4ffd-a3ee-dbfa1fa74cd4)
 
 After installation :
 

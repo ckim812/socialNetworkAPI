@@ -16,7 +16,7 @@ router
   .get(getOneThought)
   .put(updateThought)
   .delete(deleteThought); // get and delete a single thought by id
-router.route("/:thoughtId/reactions").put(createReaction); // create a reaction in a specific thought by id
+router.route("/:thoughtId/reactions").post(createReaction); // create a reaction in a specific thought by id
 router.route("/:thoughtId/reactions/:reactionId").delete(deleteReaction); // delete a reaction in a specific thought by reactionId
 
 module.exports = router;
