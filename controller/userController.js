@@ -7,9 +7,9 @@ module.exports = {
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
   },
-  //Get one users
+  //Get one user
   getOneUser(req, res) {
-    User.findOne({ _id: req.params.userId })
+    User.findById(req.params.userId)
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
   },
@@ -24,7 +24,8 @@ module.exports = {
   },
   // Delete a user
   deleteUser(req, res) {
-    User.findOneAndDelete({ _id: req.params.userId })
+    // req.params.userId = toId(req.params.userId);
+    User.findByIdAndDelete(req.params.userId)
       .then((user) =>
         !user
           ? res.status(404).json({ message: "No user with that ID" })
@@ -35,8 +36,8 @@ module.exports = {
   },
   // Update a user
   updateUser(req, res) {
-    User.findOneAndUpdate(
-      { _id: req.params.userId },
+    User.findByIdAndUpdate(
+      req.params.userId,
       { $set: req.body },
       { runValidators: true, new: true }
     )
@@ -49,9 +50,9 @@ module.exports = {
   },
   // Add a friend
   addFriend(req, res) {
-    User.findOneAndUpdate(
-      { _id: req.params.userId },
-      { $addToSet: {friends:req.params.friendId} },
+    User.findByIdAndUpdate(
+      req.params.userId,
+      { $addToSet: { friends: req.params.friendId } },
       { runValidators: true, new: true }
     )
       .then((user) =>
@@ -63,15 +64,43 @@ module.exports = {
   },
   // Delete a friend
   deleteFriend(req, res) {
-    User.findOneAndUpdate(
-      { _id: req.params.userId },
-      { $pull: {friends:req.params.friendId} },
+    User.findByIdAndUpdate(
+      req.params.userId,
+      { $pull: { friends: req.params.friendId } },
       { runValidators: true, new: true }
     )
       .then((user) =>
         !user
           ? res.status(404).json({ message: "No user with this id!" })
           : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+  //create reaction
+  createReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $addToSet: { reactions: req.body } },
+      { runValidators: true, new: true }
+    )
+      .then((thought) =>
+        !thought
+          ? res.status(404).json({ message: "No thought frind with ID!" })
+          : res.json(thought)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+  //delete reaction
+  deleteReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $pull: { reactions: { reactionId: req.params.reactionId } } },
+      { runValidators: true, new: true }
+    )
+      .then((thought) =>
+        !thought
+          ? res.status(404).json({ message: "No thought find with this ID!" })
+          : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
   },
